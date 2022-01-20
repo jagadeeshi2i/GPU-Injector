@@ -59,8 +59,10 @@ def profiler(path,trigger,trial):
     global REAK_LOCATION_3, REAK_LOCATION_4, REAK_LOCATION_5,REAK_LOCATION_6
     cuda_gdb_p = pexpect.spawn(CUDA_GDB_PATH+" "+path)
     cuda_gdb_p.maxread = 1000000
-    cuda_gdb_p.setecho(False)
+    cuda_gdb_p.setecho(True)
     cuda_gdb_p.expect(CUDA_GDB_EXPECT)  
+    print(dir(cuda_gdb_p))
+    cuda_gdb_p.sendline("set breakpoint pending on")
     #---------------
     # set breakpoint
     #---------------
